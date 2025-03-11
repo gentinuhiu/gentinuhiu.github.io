@@ -296,12 +296,11 @@ nav a {
 /* Stats Section */
 /* Stats Section */
 #stats {
-    background: #C89B3C; /* White background */
+    background: white; /* White background */
     color: white;
     text-shadow: 1px 1px black;
     text-align: center;
     padding: 60px 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
 }
 
