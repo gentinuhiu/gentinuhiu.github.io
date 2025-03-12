@@ -212,7 +212,7 @@ nav a {
     padding: 110px 20px;
     overflow: hidden;
     position: relative;
-    height:350px;
+    height:fit-content;
 }
 
 .hero::before {
@@ -237,6 +237,10 @@ nav a {
     font-size: 20px;
     margin-bottom: 20px;
     color: #ffffff; /* White */
+}
+
+.hero a{
+    margin-bottom: 50px;
 }
 
 .btn {
@@ -291,7 +295,15 @@ nav a {
 .menu-image-link:hover img {
     opacity: 0.8;
 }
-
+.menu hr{
+    color:#C89B3C;
+    height: 3px;
+    border: none;
+    background-color: #C89B3C;
+    text-align: center;
+    width: 270px;
+    margin:0 auto 10px auto;
+}
 
 /* Stats Section */
 /* Stats Section */
@@ -300,7 +312,7 @@ nav a {
     color: white;
     text-shadow: 1px 1px black;
     text-align: center;
-    padding: 60px 20px;
+    padding: 0 20px 60px 20px;
     border-radius: 10px;
 }
 
@@ -409,8 +421,9 @@ nav a {
     background: white;
 }
 
-.menu h2 {
+.menu h3{
     color: #C89B3C; /* Gold */
+    margin:30px 0 0 0;
 }
 
 .menu-items {
@@ -445,9 +458,7 @@ nav a {
     display: flex;
     flex-wrap: wrap; /* Enables wrapping on smaller screens */
     justify-content: center;
-    padding: 25px;
     height: auto;
-    gap: 20px; /* Adds space between sections */
 }
 
 /* Responsive Stacking at 600px */
@@ -458,6 +469,9 @@ nav a {
     }
     .table-plan img{
         max-width: 100% !important;
+    }
+    .reservations{
+        width: 80%;
     }
 }
 
@@ -478,16 +492,67 @@ nav a {
     flex: 1;
     min-width: 300px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: -webkit-fill-available;
 }
+/* Phone Input Styling */
+#phone-number {
+    width: 80%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #C89B3C; /* Gold border */
+    background: white;
+    font-size: 16px;
+    margin: 10px auto;
+}
+
+/* Text Areas */
+textarea {
+    width: 80%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #C89B3C;
+    border-radius: 5px;
+    background: white;
+    font-size: 16px;
+    resize: none;
+    margin: 3px auto;
+}
+
 
 /* Table Plan Section */
 .table-plan {
-    padding: 50px;
-    background: #C89B3C;
     flex: 1;
     min-width: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3)
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 50px;
+    background: #C89B3C;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
 }
+
+/* Table Plan */
+/* Table Plan */
+.table-plan img{
+    width: 100%;
+    object-fit: cover;
+
+}
+
+.text-white{
+    color:white;
+}
+.text-gold{
+    color:#C89B3C !important;
+    text-decoration: none !important;
+}
+.text-black{
+    color:black;
+}
+.link{
+    text-decoration: none !important;
+}
+
 
 /* Toggle Button */
 #toggle-plan {
@@ -537,16 +602,26 @@ nav a {
 .table-plan h2 {
     color: white; /* Gold */
 }
-
-.table-plan img {
-    max-width: 80%;
-    border-radius: 10px;
-    border: 3px solid #C89B3C; /* Gold border */
-}
 #about{
-    height:200px;
+    height:fit-content;
+    margin-top: 50px;
+    margin-bottom: 50px;
     background-color: white;
+    padding: 10px 30px;
     color: #C89B3C;
+}
+#about .text{
+    text-align: justify;
+}
+#about .img-container{
+    height: fit-content;
+    width: 100%;
+}
+#about .logo{
+    width: 130px;
+}
+#about .header{
+    width:100%;
 }
 /* Footer */
 footer {

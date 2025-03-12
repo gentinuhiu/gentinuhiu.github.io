@@ -28,9 +28,11 @@
     <button class="menu-toggle" id="menu-toggle">☰</button>
     <nav id="navbar">
         <ul>
-            <li><a href="#menu">Menu</a></li>
-            <li><a href="#res-plan">Reservations</a></li>
-            <li><a href="#about">The Restaurant</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="#reservation-section">Reservierungen</a></li>
+            <li><a href="#plan-section">Sitzplan</a></li>
+            <li><a href="#about">Über das Restaurant</a></li>
+            <li><a href="#contact">Kontakt</a></li>
         </ul>
     </nav>
 </header>
@@ -41,8 +43,7 @@
         <h4>Dein feines italienisches Restaurant im schicken Berlin-Schöneberg.</h4>
         <p>Ein elegantes Dining-Erlebnis – exklusive Spezialitäten und raffinierte Aromen in stilvollem Ambiente.</p>
         <br>
-        <a href="#reservations" class="btn">Book a Table</a>
-        <br>
+        <a href="#reservation-section" class="btn">Reservierungen</a>
     </section>
 
     <!-- Menu Section -->
@@ -57,6 +58,8 @@
 
         <!-- Statistics Section -->
 <!-- Statistics Section -->
+ <h3>Unsere Hingabe für exzellenten Service</h3>
+ <hr/>
 <section id="stats">
     <div class="stats-container">
         <div class="stat-box">
@@ -69,11 +72,11 @@
         </div>
         <div class="stat-box">
             <span class="stat-number" data-target="75">0</span>
-            <p>Dishes</p>
+            <p>Gerichte</p>
         </div>
         <div class="stat-box">
             <span class="stat-number" data-target="200">0</span>
-            <p>Wines</p>
+            <p>Weine</p>
         </div>
     </div>
 </section>
@@ -83,59 +86,116 @@
 <!-- Reservations & Table Plan Container -->
 <section id="res-plan">
     <!-- Reservations Section -->
-    <section class="reservations" class="reservations">
-        <h2>Reserve a Table</h2>
+    <section class="reservations" id="reservation-section">
+        <h2>Reservierungen</h2>
+
+        <i class="text-white">
+            ⏰ Montag-Freitag von 15:00-24:00
+            <br>
+            ⏰ Samstag-Sonntag von 12:00-24:00
+        </i>
+        
+        <p class="text-white">
+            Unsere verfügbaren Räumlichkeiten ermöglichen es Ihnen, Reservierungen für eine große Anzahl von Personen vorzunehmen.            
+            <a href="#plan-section" class="link"><span class="text-gold">Entdecken Sie unsere Räume.</span></a>
+        </p>
+
         <form id="reservation-form">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Email" required>
+            <input type="text" placeholder="Ihr Name" required>
+            <input type="email" placeholder="E-Mail" required>
+        
+            <!-- Phone Number Input -->
+            <input type="tel" id="phone-number" placeholder="Telefonnummer" required>
+        
             <input type="date" required>
-            <input type="time" required>
-            <button type="submit">Book Now</button>
+        
+            <!-- Time Input (Restricted to 15:00 - 00:00) -->
+            <input type="time" id="time" required min="15:00" max="23:59">
+        
+            <!-- Number of People (Default = 2, Min = 1) -->
+            <input type="number" placeholder="Anzahl der Personen" min="1" required>
+        
+            <!-- Text Area for Event Details -->
+            <textarea placeholder="Reservierungsdetails (z.B. Geburtstag, Geschäftsessen, etc.)"></textarea>
+        
+            <!-- Text Area for Food Preferences -->
+            <textarea placeholder="Essenswünsche oder Allergien"></textarea>
+        
+            <button type="submit">Jetzt reservieren</button>
         </form>
+        
+        
     </section>
 
     <!-- Table Plan Section -->
-    <section class="table-plan" class="table-plan">
-        <h2>Table Plan</h2>
-        <img id="table-plan-img" src="plan-inside.jpg" alt="Restaurant Table Plan">
-        <button id="toggle-plan">Switch to Outside</button>
-    </section>
+<!-- Table Plan Section -->
+<!-- Table Plan Section -->
+<section class="table-plan" id="plan-section">
+    <h2>Sitzplan des Restaurants</h2>
+
+        <img id="table-plan-img" src="entire.jpg" alt="Restaurant Table Plan">
+
+        <br>
+        <br>
+        <p class="text-black">
+            Für weitere Fragen und Informationen können 
+            <a class="link" href="#contact"><span class="text-white">Sie uns kontaktieren.</span></a>
+        </p>
+</section>
+
+
 </section>
 
 
         <!-- About Section -->
     <section id="about">
-        <h2>About</h2>
+        <h2>Über uns</h2>
+        <h3>Ristorante Villa Franca – Eine Symphonie italienischer Eleganz</h3>
+       <div class="img-container">
+        <img class="logo" src="logo.png"
+    </div>
+    <div class="text">
+        <p>Treten Sie ein in das Ristorante Villa Franca, wo feine Kulinarik auf die Kunst der italienischen Küche trifft. In einem Ambiente zeitloser Eleganz laden wir Sie ein, erlesene Aromen zu genießen, die mit Leidenschaft und Perfektion kreiert wurden.</p>
+        <p>Unsere Speisekarte bietet eine sorgfältige Auswahl an klassischen und modernen italienischen Delikatessen, die die besten Zutaten und handwerkliches Können zelebrieren. Von hausgemachter Pasta bis zur perfekten Holzofenpizza – jeder Bissen ist eine Reise durch Geschmack und Tradition.</p>
+        <div class="img-container">
+            <img class="header" src="about.jpeg">
+        </div>
+        <p>Vervollständigen Sie Ihr kulinarisches Erlebnis mit einer Auswahl aus unserer exquisiten Weinkollektion, die erlesene Jahrgänge umfasst und perfekt zu Ihrem Menü passt.</p>
+        <p>Ob ein romantisches Dinner, eine besondere Feier oder ein genussvoller Abend, in der Villa Franca vereinen sich Stil und Geschmack zu einem harmonischen Erlebnis.</p>
+        <p>Wir freuen uns darauf, Sie zu einem unvergesslichen kulinarischen Erlebnis willkommen zu heißen.</p>
+    </div>
     </section>
 
     <!-- Footer Section -->
-<footer>
+<footer id="contact">
     <div class="footer-container">
         <!-- Left: Contact Information -->
         <div class="footer-section">
-            <h3>Contact Us</h3>
-            <p>📍 Berlin, Germany</p>
-            <p>📧 info@villafranca.com</p>
-            <p>📞 +49 30 12345678</p>
+            <h3>Kontakt</h3>
+            <p><i>Ristorante Villa Franca</i></p>
+            <p>📍 Vorbergstraße 10, 10823 Berlin</p>
+            <p>📧 info@villafranca-berlin.de</p>
+            <p>📞 +49 30 23 90 77 30</p>
         </div>
 
         <!-- Center: Quick Links -->
         <div class="footer-section">
-            <h3>Quick Links</h3>
-            <ul>
+            <h3>Standort</h3>
+            <!-- <ul>
                 <li><a href="#menu">Menu</a></li>
                 <li><a href="#reservations">Reservations</a></li>
                 <li><a href="#table-plan">Table Plan</a></li>
-            </ul>
+            </ul> -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2429.448039676664!2d13.35177157667924!3d52.4891288720531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a85195a975af61%3A0x420ec8a86c4e70b4!2sVilla%20Franca%20Berlin!5e0!3m2!1sen!2smk!4v1741786670525!5m2!1sen!2smk" width="300" height="225" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
         <!-- Right: Social Media -->
         <div class="footer-section">
-            <h3>Follow Us</h3>
+            <h3>Folgen Sie uns</h3>
             <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a target="_blank" href="https://www.facebook.com/profile.php?id=100063453582260"><i class="fab fa-facebook"></i></a>
+                <a target="_blank" href="https://www.instagram.com/villa_franca_berlin/"><i class="fab fa-instagram"></i></a>
+                <a target="_blank" href="https://www.tiktok.com/@ristoirante.villa.franca"><i class="fab fa-tiktok"></i></a>
             </div>
         </div>
     </div>

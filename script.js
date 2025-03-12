@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementsByTagName("header")[0].style.display = "none";
-    
+
     // Loading Screen Effect
     setTimeout(() => {
         document.getElementById("loading-screen").style.opacity = "0";
@@ -14,22 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 500); // Wait for fade-out effect
     }, 2000);
 
-    // Table Plan Toggle
-    const tablePlanImg = document.getElementById("table-plan-img");
-    const toggleButton = document.getElementById("toggle-plan");
-
-    if (tablePlanImg && toggleButton) { 
-        let isInside = true; 
-
-        toggleButton.addEventListener("click", function () {
-            tablePlanImg.src = isInside ? "plan-outside.jpg" : "plan-inside.jpg";
-            toggleButton.textContent = isInside ? "Switch to Inside" : "Switch to Outside";
-            isInside = !isInside; 
-        });
-    }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
+    // Navbar Toggle
     const menuToggle = document.getElementById("menu-toggle");
     const navbar = document.getElementById("navbar");
 
@@ -68,9 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 400);
         }
     });
-});
 
-document.addEventListener("DOMContentLoaded", function () {
+    // Statistics Animation
     const statNumbers = document.querySelectorAll(".stat-number");
 
     function animateNumbers() {
@@ -105,16 +89,61 @@ document.addEventListener("DOMContentLoaded", function () {
     }, { threshold: 0.5 });
 
     observer.observe(statsSection);
-});
 
+    // Smooth scrolling for ALL links, not just navbar
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetElement = document.querySelector(this.getAttribute('href'));
 
-
-// Smooth scrolling
-document.querySelectorAll('nav a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+            if (targetElement) {
+                e.preventDefault();
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         });
     });
+
+    // Table Plan Image Switching with Buttons
+    const tablePlanImg = document.getElementById("table-plan-img");
+    const prevButton = document.getElementById("prev-plan");
+    const nextButton = document.getElementById("next-plan");
+    const images = ["outside.jpg", "inside.jpg", "vip.jpg"];
+    let currentIndex = 0;
+
+    function changeImage(direction) {
+        if (direction === "up" && currentIndex > 0) {
+            currentIndex--;
+        } else if (direction === "down" && currentIndex < images.length - 1) {
+            currentIndex++;
+        }
+        tablePlanImg.style.opacity = "0"; // Fade out effect
+        setTimeout(() => {
+            tablePlanImg.src = images[currentIndex];
+            tablePlanImg.style.opacity = "1"; // Fade in effect
+        }, 300);
+    }
+
+    if (prevButton && nextButton) {
+        prevButton.addEventListener("click", () => changeImage("up"));
+        nextButton.addEventListener("click", () => changeImage("down"));
+    }
+
+    // Restrict Time Input (3 PM - 12 AM)
+    const timeInput = document.getElementById("time");
+
+    if (timeInput) {
+        timeInput.addEventListener("change", function () {
+            let selectedTime = this.value;
+            let minTime = "12:00"; // 3:00 PM
+            let maxTime = "23:59"; // 11:59 PM
+
+            if (selectedTime < minTime) {
+                this.value = minTime;
+            }
+            if (selectedTime > maxTime) {
+                this.value = maxTime;
+            }
+        });
+    }
 });
