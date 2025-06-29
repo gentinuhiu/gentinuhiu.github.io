@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vocabulary Dash – Easy Learning</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    .dash-wrapper { text-align: center; padding: 40px 20px; }
+    .countdown-bar { height: 20px; width: 100%; background: #ddd; border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+    .countdown-fill { height: 100%; background: #28a745; width: 100%; transition: width 1s linear; }
+    .match-zone { display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
+    .word-list, .image-list { flex: 1; min-width: 280px; }
+    .draggable, .droppable { padding: 15px; margin: 10px 0; border: 2px dashed #ccc; border-radius: 8px; background: white; cursor: move; }
+    .droppable img { width: 100px; height: 100px; object-fit: cover; }
+    .highlight { border: 2px solid #28a745 !important; background: #e6ffe6; }
+    .buzz { animation: buzz 0.2s linear; }
+    @keyframes buzz {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+    .xp-banner { display: none; margin-top: 30px; padding: 20px; background: #f3f8ff; border-radius: 10px; box-shadow: 0 0 6px rgba(0,0,0,0.1); }
+    .xp-banner.show { display: block; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar alt-navbar">
+  <div class="container navbar-container">
+    <h1 class="logo">Easy Learning 🤖</h1>
+    <input type="checkbox" id="menu-toggle" />
+    <label for="menu-toggle" class="hamburger">&#9776;</label>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="task1.html">Pronunciation</a></li>
+      <li><a href="task2.html">Vocabulary Dash</a></li>
+      <li><a href="task3.html">Dashboard</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="dash-wrapper container">
+  <h2>Vocabulary Dash</h2>
+  <div class="countdown-bar">
+    <div id="countdownFill" class="countdown-fill"></div>
+  </div>
+
+  <div class="match-zone">
+    <div class="word-list">
+      <div class="draggable" draggable="true">Apple</div>
+      <div class="draggable" draggable="true">Car</div>
+      <div class="draggable" draggable="true">Dog</div>
+      <div class="draggable" draggable="true">Sun</div>
+      <div class="draggable" draggable="true">Tree</div>
+      <div class="draggable" draggable="true">Chair</div>
+      <div class="draggable" draggable="true">Fish</div>
+      <div class="draggable" draggable="true">Phone</div>
+      <div class="draggable" draggable="true">Book</div>
+      <div class="draggable" draggable="true">Shoe</div>
+    </div>
+
+    <div class="image-list">
+      <div class="droppable" data-word="Apple"><img src="images/apple.jpg" alt="Apple" /></div>
+      <div class="droppable" data-word="Car"><img src="images/car.jpg" alt="Car" /></div>
+      <div class="droppable" data-word="Dog"><img src="images/dog.jpg" alt="Dog" /></div>
+      <div class="droppable" data-word="Sun"><img src="images/sun.jpg" alt="Sun" /></div>
+      <div class="droppable" data-word="Tree"><img src="images/tree.jpg" alt="Tree" /></div>
+      <div class="droppable" data-word="Chair"><img src="images/chair.jpg" alt="Chair" /></div>
+      <div class="droppable" data-word="Fish"><img src="images/fish.jpg" alt="Fish" /></div>
+      <div class="droppable" data-word="Phone"><img src="images/phone.jpg" alt="Phone" /></div>
+      <div class="droppable" data-word="Book"><img src="images/book.jpg" alt="Book" /></div>
+      <div class="droppable" data-word="Shoe"><img src="images/shoe.jpg" alt="Shoe" /></div>
+    </div>
+  </div>
+
+  <div id="xpBanner" class="xp-banner">
+    <h3>You Scored 100 XP! 🏅</h3>
+    <button class="btn">Play Again</button>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2025 Easy Learning AI. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Drag & Drop Logic (Demo Only)
+  const draggables = document.querySelectorAll('.draggable');
+  const droppables = document.querySelectorAll('.droppable');
+  let currentDrag = null;
+  let matches = 0;
+
+  draggables.forEach(item => {
+    item.addEventListener('dragstart', () => currentDrag = item);
+  });
+
+  droppables.forEach(drop => {
+    drop.addEventListener('dragover', e => e.preventDefault());
+    drop.addEventListener('drop', () => {
+      if (currentDrag.textContent.trim() === drop.dataset.word) {
+        drop.classList.add('highlight');
+        drop.appendChild(currentDrag);
+        currentDrag.setAttribute('draggable', 'false');
+        matches++;
+        if (matches === 10) document.getElementById('xpBanner').classList.add('show');
+      } else {
+        currentDrag.classList.add('buzz');
+        setTimeout(() => currentDrag.classList.remove('buzz'), 200);
+      }
+    });
+  });
+
+  // Countdown Timer
+  let timeLeft = 120;
+  const countdownFill = document.getElementById('countdownFill');
+  const timer = setInterval(() => {
+    timeLeft--;
+    const percent = (timeLeft / 120) * 100;
+    countdownFill.style.width = percent + '%';
+    if (timeLeft <= 30) countdownFill.style.background = '#ffc107';
+    if (timeLeft <= 0 || matches === 10) clearInterval(timer);
+  }, 1000);
+</script>
+
+</body>
+</html>
