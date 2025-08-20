@@ -1,77 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Live Room – Easy Learning</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Live Room — Easy Learning</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 <body>
-
-<nav class="navbar alt-navbar">
+<nav class="navbar">
   <div class="container navbar-container">
     <h1 class="logo">Easy Learning 🤖</h1>
-    <input type="checkbox" id="menu-toggle" />
+    <input type="checkbox" id="menu-toggle"/>
     <label for="menu-toggle" class="hamburger">&#9776;</label>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="task1.html">Pronunciation</a></li>
+      <li><a class="active" href="task1.html">Live Room</a></li>
       <li><a href="task2.html">Vocabulary Dash</a></li>
-      <li><a href="task3.html">Dashboard</a></li>
+      <li><a href="task3.html">AI Pronunciation Coach</a></li>
     </ul>
   </div>
 </nav>
 
-<section class="hero ai-hero">
+<section class="hero">
   <div class="container">
     <h2>Live Room</h2>
-    <p>Join real-time themed rooms and start speaking confidently with peers.</p>
+    <p class="small">Pick a theme, join, and start speaking. You can leave anytime.</p>
   </div>
 </section>
 
-<section class="container">
-  <h3 style="margin-top: 40px; text-align:center;">Choose a Room</h3>
-  <div class="grid-box">
-    <button class="card">Food & Folklore</button>
-    <button class="card">Travel Tips</button>
-    <button class="card">Hobbies & Sports</button>
+<section class="container card shadow" style="margin:24px auto">
+  <h3>Choose a Room</h3>
+  <div class="grid">
+    <button class="btn ghost room" data-room="Food & Folklore">Food & Folklore</button>
+    <button class="btn ghost room" data-room="Travel Tips">Travel Tips</button>
+    <button class="btn ghost room" data-room="Hobbies & Sports">Hobbies & Sports</button>
   </div>
 
-  <div class="vocab-game" style="margin-top:60px;">
-    <h3>Live Room Simulation</h3>
-    <div class="grid-box">
-      <div class="card">
-        <p><strong>Video Area</strong></p>
-        <p>Camera/Mic toggles:</p>
-        <button class="btn">🎥 Camera</button>
-        <button class="btn">🎙️ Mic</button>
-      </div>
-      <div class="card">
-        <p><strong>Chat Sidebar</strong></p>
-        <div class="feedback-box" style="text-align:left;">
-          <p><em>Hello! Where are you from?</em></p>
-          <p><em>I’m learning English for travel!</em></p>
-          <p><input type="text" placeholder="Type your message..." style="width:100%; padding:8px;" /></p>
-        </div>
-      </div>
-      <div class="card">
-        <p><strong>Presence Feed</strong></p>
-        <ul style="list-style:none; padding:0;">
-          <li>👤 Ana joined</li>
-          <li>👤 David left</li>
-          <li>👤 Marco joined</li>
-        </ul>
+  <div id="joinedToast" class="toast">Joining room…</div>
+
+  <div class="toolbar">
+    <div class="status"><span id="micDot" class="dot muted"></span><span id="micLabel">Mic Off</span></div>
+    <div class="status"><span id="camDot" class="dot muted"></span><span id="camLabel">Camera Off</span></div>
+    <div style="flex:1"></div>
+    <button id="leaveBtn" class="btn danger" style="display:none"><i class="fa-solid fa-door-open"></i> Leave Room</button>
+  </div>
+
+  <div class="two-pane">
+    <div class="video" id="videoArea">
+      <p class="small" id="videoPlaceholder">Join a room to enable mic/cam controls.</p>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button id="micBtn" class="btn secondary" disabled><i class="fa-solid fa-microphone-slash"></i> Mic</button>
+        <button id="camBtn" class="btn secondary" disabled><i class="fa-solid fa-video-slash"></i> Cam</button>
       </div>
     </div>
+    <aside class="sidebar card">
+      <p><strong>Chat</strong></p>
+      <div id="chatLog" class="list" style="max-height:320px"></div>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <input id="chatInput" class="card" placeholder="Type your message…" style="flex:1;padding:10px;border-radius:10px;border:1px solid var(--border);background:#0e1628;color:var(--text)"/>
+        <button id="sendBtn" class="btn">Send</button>
+      </div>
+      <div class="card" style="margin-top:12px">
+        <p class="small"><strong>Presence</strong></p>
+        <ul id="presence" class="small" style="list-style:none;padding:0;margin:0"></ul>
+      </div>
+    </aside>
   </div>
 </section>
 
-<footer>
-  <div class="container">
-    <p>&copy; 2025 Easy Learning AI. All rights reserved.</p>
-  </div>
-</footer>
+<div class="footer"><div class="container">&copy; 2025 Easy Learning AI.</div></div>
 
+<script>
+const toast = (msg)=>{const t=document.getElementById('joinedToast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1200);};
+const rooms = document.querySelectorAll('.room');
+const micBtn = document.getElementById('micBtn');
+const camBtn = document.getElementById('camBtn');
+const micDot = document.getElementById('micDot');
+const camDot = document.getElementById('camDot');
+const micLabel = document.getElementById('micLabel');
+const camLabel = document.getElementById('camLabel');
+const leaveBtn = document.getElementById('leaveBtn');
+const presence = document.getElementById('presence');
+const chatLog = document.getElementById('chatLog');
+const chatInput = document.getElementById('chatInput');
+const sendBtn = document.getElementById('sendBtn');
+let inRoom=false, mic=false, cam=false;
+
+rooms.forEach(b=>b.addEventListener('click',()=>{
+  inRoom=true;
+  toast("Welcome to "+b.dataset.room);
+  document.getElementById('videoPlaceholder').textContent="You're in "+b.dataset.room;
+  micBtn.disabled=false; camBtn.disabled=false; leaveBtn.style.display='inline-flex';
+  presence.innerHTML = "<li>👤 Ana joined</li><li>👤 Marco joined</li>";
+}));
+
+function setMic(state){
+  mic=state;
+  micDot.className = "dot "+(mic?"live":"muted");
+  micLabel.textContent = mic? "Mic On":"Mic Off";
+  micBtn.innerHTML = mic? '<i class="fa-solid fa-microphone"></i> Mic'
+                        : '<i class="fa-solid fa-microphone-slash"></i> Mic';
+}
+function setCam(state){
+  cam=state;
+  camDot.className = "dot "+(cam?"live":"muted");
+  camLabel.textContent = cam? "Camera On":"Camera Off";
+  camBtn.innerHTML = cam? '<i class="fa-solid fa-video"></i> Cam'
+                        : '<i class="fa-solid fa-video-slash"></i> Cam';
+}
+micBtn.addEventListener('click',()=>setMic(!mic));
+camBtn.addEventListener('click',()=>setCam(!cam));
+leaveBtn.addEventListener('click',()=>{
+  if(confirm("Leave the room?")){
+    inRoom=false; setMic(false); setCam(false);
+    micBtn.disabled=true; camBtn.disabled=true; leaveBtn.style.display='none';
+    document.getElementById('videoPlaceholder').textContent="Join a room to enable mic/cam controls.";
+    presence.innerHTML="";
+    toast("You left the room");
+  }
+});
+
+function appendMsg(text){const p=document.createElement('div');p.className='card';p.textContent=text;chatLog.appendChild(p);chatLog.scrollTop=chatLog.scrollHeight;}
+sendBtn.addEventListener('click',()=>{if(chatInput.value.trim()){appendMsg(chatInput.value.trim());chatInput.value="";}});
+chatInput.addEventListener('keydown',(e)=>{ if(e.key==="Enter"){ e.preventDefault(); sendBtn.click(); } });
+</script>
 </body>
 </html>
