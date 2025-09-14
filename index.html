@@ -1,81 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Easy Learning — AI Version</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Genti Nuhiu — Software Engineering Student</title>
+  <meta name="description" content="Personal website of Genti Nuhiu — Software Engineering student in Skopje, North Macedonia. Projects, internships, skills, and contact." />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
 </head>
 <body>
-<nav class="navbar">
-  <div class="container navbar-container">
-    <h1 class="logo">Easy Learning 🤖</h1>
-    <input type="checkbox" id="menu-toggle"/>
-    <label for="menu-toggle" class="hamburger">&#9776;</label>
-    <ul class="nav-links">
-      <li><a class="active" href="index.html">Home</a></li>
-      <li><a href="task1.html">Live Room</a></li>
-      <li><a href="task2.html">Vocabulary Dash</a></li>
-      <li><a href="task3.html">AI Pronunciation Coach</a></li>
-    </ul>
-  </div>
-</nav>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="logo-circle">GN</span>
+        <a class="brand-name" href="#">Genti Nuhiu</a>
+      </div>
+      <nav class="main-nav">
+        <button id="navToggle" class="nav-toggle">☰</button>
+        <ul id="navMenu">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#awards">Hackathons</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><button id="themeToggle" class="theme-toggle">🌓</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-<header class="hero">
-  <div class="container">
-    <h2>Speak Smarter with AI</h2>
-    <p>Master pronunciation, grammar, and fluency using intelligent feedback in real time.</p>
-    <a href="task3.html" class="btn">Try AI Now</a>
-  </div>
-</header>
+  <main id="content">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1>Software Engineering Student</h1>
+          <p class="lead">
+            Passionate about algorithms, system design, and building pragmatic IT solutions.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="#projects">See Projects</a>
+            <a class="btn ghost" href="#contact">Get in Touch</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section class="container grid" style="margin:24px auto">
-  <div class="card shadow">
-    <div class="badge"><i class="fa-solid fa-users"></i> Live</div>
-    <h3>Live Room</h3>
-    <p class="small">Join themed speaking rooms. Toggle mic/cam, chat with others, and feel the energy of real time exchange.</p>
-    <a href="task1.html" class="btn">Enter a Room</a>
-  </div>
+    <section id="about" class="section">
+      <div class="container">
+        <h2>About</h2>
+        <p>
+          I'm Genti Nuhiu, a Software Engineering student based in Skopje, North Macedonia.
+        </p>
+      </div>
+    </section>
 
-  <div class="card shadow">
-    <div class="badge"><i class="fa-solid fa-puzzle-piece"></i> Game</div>
-    <h3>Vocabulary Dash</h3>
-    <p class="small">Match words to images in a paced game. Earn points and badges.</p>
-    <a href="task2.html" class="btn">Play Now</a>
-  </div>
+    <section id="skills" class="section alt">
+      <div class="container">
+        <h2>Technical Skills</h2>
+        <ul class="tag-list">
+          <li>C/C++</li><li>C#</li><li>Java</li><li>Python</li>
+          <li>JavaScript</li><li>HTML/CSS</li><li>React</li><li>Angular</li>
+          <li>Spring Boot</li><li>ASP.NET</li>
+        </ul>
+      </div>
+    </section>
 
-  <div class="card shadow">
-    <div class="badge"><i class="fa-solid fa-microphone-lines"></i> Coach</div>
-    <h3>AI Pronunciation Coach</h3>
-    <p class="small">Record your voice and receive instant feedback. Retry and watch your score improve.</p>
-    <a href="task3.html" class="btn">Practice Speaking</a>
-  </div>
-</section>
+    <section id="experience" class="section">
+      <div class="container">
+        <h2>Experience</h2>
+        <article class="card">
+          <h3>Software Engineering Intern — G+D Netcetera</h3>
+          <p><em>Apr 2025 – Jul 2025</em></p>
+          <ul>
+            <li>Worked on 3D-Secure protocol tools for transactions.</li>
+            <li>Stack: Spring Boot, Angular, BitBucket, Jira, Jenkins, Maven</li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-<section class="container card shadow" style="margin:24px auto">
-  <h3><i class="fa-solid fa-robot"></i> AI In Action</h3>
-  <div class="card" style="background:#0c1426">
-    <p>“She sells sea shells...”</p>
-    <p><strong>AI Feedback:</strong> Great pacing. Try softening the ‘s’ sound.</p>
-    <button class="btn ghost">See More Examples</button>
-  </div>
-</section>
+    <section id="projects" class="section alt">
+      <div class="container">
+        <h2>Projects</h2>
+        <ul>
+          <li><a href="https://github.com/gentinuhiu/Macedonian-Stock-Exchange">Macedonian Stock Exchange</a></li>
+          <li><a href="https://github.com/gentinuhiu/Restaurant-Web-App">Restaurant Ordering App</a></li>
+          <li><a href="https://github.com/gentinuhiu/Minesweeper">Minesweeper</a></li>
+          <li><a href="https://github.com/gentinuhiu/Emotion-Detection">Emotion Detection</a></li>
+        </ul>
+      </div>
+    </section>
 
-<section class="container card shadow" style="margin:24px auto">
-  <h3><i class="fa-solid fa-comment-dots"></i> What Users Say</h3>
-  <div class="grid">
-    <div class="card">“The AI voice feedback helped me sound more fluent in 2 weeks!” — <strong>Alex</strong></div>
-    <div class="card">“I’ve stopped fearing speaking English thanks to this app.” — <strong>Fatima</strong></div>
-    <div class="card">“The grammar coach is like having a private teacher.” — <strong>Marco</strong></div>
-  </div>
-</section>
+    <section id="education" class="section">
+      <div class="container">
+        <h2>Education</h2>
+        <p><strong>FINKI — Skopje</strong>, B.Sc. Software Engineering (2022 – Present), GPA 9.20</p>
+      </div>
+    </section>
 
-<div class="footer">
-  <div class="container">
-    <p>&copy; 2025 Easy Learning AI. All rights reserved.</p>
-    <a class="btn help ghost" href="help.html" aria-label="Help"><i class="fa-regular fa-circle-question"></i></a>
-  </div>
-</div>
+    <section id="awards" class="section alt">
+      <div class="container">
+        <h2>Hackathons</h2>
+        <p>🏆 First place at EESTEC Skopje 2024 (Plant Disease Detection).</p>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:gentinuhiu5@gmail.com">gentinuhiu5@gmail.com</a></p>
+        <p>Phone: +389 72 594 651</p>
+        <p>GitHub: <a href="https://github.com/gentinuhiu">github.com/gentinuhiu</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Genti Nuhiu</p>
+    </div>
+  </footer>
 </body>
 </html>
